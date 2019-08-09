@@ -7,21 +7,24 @@ $(document).ready(function() {
 
 
   function updateNote() {
-    newNote.getCurrentNote(function(data) {
-      $('#random-note').text(data["note"]);
+    $.get('/note', function(response) {
+      var data = JSON.parse(response)
+      if(data["status"] == 200) {
+          $('#random-note').text(data["note"]);
+      }
     })
-  }
+  };
 
   $('#generate').on('click', updateNote);
 
+  $('#save').on('click', function(event) {
 
-
-  $('#save').on('click', function() {
-
+    event.preventDefault();
     var text =document.getElementById('textarea').value;
+
     $.post('/note', { saved_note: text}, function(response) {
       var data = JSON.parse(response);
-      if (data.status == 200) {
+      if (data["status"] == 200) {
         updateNote();
       }
 

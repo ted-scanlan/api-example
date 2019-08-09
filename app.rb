@@ -15,7 +15,10 @@ class ThermostatApp < Sinatra::Base
 
         note = Note.instance
         random_note = note.pick
-        { note: random_note }.to_json
+        { note: random_note,
+          status: 200
+         }.to_json
+
 
   end
 

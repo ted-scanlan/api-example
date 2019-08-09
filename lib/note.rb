@@ -1,25 +1,26 @@
 class Note
-attr_reader :sentence
+attr_reader :sentences
 
   def initialize
-    @sentence = pick
+    @sentences = []
 
   end
 
   def pick
 
-  @sentences = ["I love tables", "time exists so nothing happens at once", "are we going to tomorrow or is tomorrow coming to us?", "parsnips are one of my favourite vegetables"].sample
+  @sentences.sample
 
   end
 
 
   def self.instance
-    @sentence ||= self.new
+    @note ||= self.new
   end
 
-  def update
-    @sentence = pick
+  def add(note)
 
-end
+    @sentences << note
+
+  end
 
 end
